@@ -4,13 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log In</title>
+    <title>Document</title>
+    <link rel="stylesheet" href="form.css">
 </head>
 <body>
+
     <header>
         <h1>Header</h1>
-        <p>My supercool header</p>
+        <div id="header_button_div">
+            <a href="Goals.html">
+                <button class="header_button">Button 1</button>
+            </a>
+            <button class="header_button">Button 2</button>
+        </div>
     </header>
- 
+
+    <div id="form_background">
+        <!--the action attribute tells the form where to submit the info-->
+    <form action="" method="post">
+        <ul>
+          <li>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="user_name" />
+          </li>
+          <li>
+            <label for="mail">Email:</label>
+            <input type="email" id="mail" name="user_email" />
+          </li>
+          <li>
+            <button id="submit_button" type="submit">Submit</button>
+          </li>
+        </ul>
+      </form>
+      <!--the type of "submit" submits the form info-->
+    </div>
+    
+      
 </body>
 </html>
+

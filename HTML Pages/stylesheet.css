@@ -1,0 +1,38 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid black;
+    padding: 10px;
+    background-color: white;
+}
+
+#header_button_div {
+    width: 150px;
+    display: flex;
+    justify-content: space-around;
+    align-self: center;
+}
+
+button {
+    transition-duration: 0.4s;
+    color: white;
+    border-radius: 3px;
+    height: 70px;
+    width: 70px;
+}
+
+button:hover {
+    background-color: white;
+    color: black;
+}
+
+button:active {
+    transition-duration: 0.05s;
+    color: rgb(187, 186, 186);
+    border-color: rgb(187, 186, 186);
+}
+
+.header_button {
+    background-color: green;
+    border: 2px solid green;
+}

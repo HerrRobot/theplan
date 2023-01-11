@@ -1,0 +1,28 @@
+@import "stylesheet.css";
+
+form {
+    display: block;
+}
+
+#submit_button {
+    background-color: orange;
+    border: 2px solid orange;
+}
+
+#submit_button:hover {
+    background-color: white;
+    color: black;
+}
+
+body {
+    background-image: url("water_bg.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 500px;
+}
+
+#form_background {
+    background-color: white;
+    padding: 20px;
+    margin: 50px;
+}
