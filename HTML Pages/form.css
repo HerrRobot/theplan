@@ -1,7 +1,14 @@
-@import "stylesheet.css";
-
+/* 
+#20283d - black
+#426e5d - green
+#e5b083 - orange
+#fbf7f3 - white
+*/
 form {
     display: block;
+    text-align: center;
+    height: 400px;
+    width: 300px;
 }
 
 #submit_button {
@@ -15,14 +22,29 @@ form {
 }
 
 body {
-    background-image: url("water_bg.jpeg");
+    background-color: #fbf7f3;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 500px;
 }
 
+button {
+    transition-duration: 0.4s;
+    color: #fbf7f3;
+    border-radius: 3px;
+    height: 40px;
+    width: 70px;
+    min-width: 0;
+}
+
+ul {
+    list-style-type: none;
+    text-align: left;
+    display: inline-block;
+}
+
+
 #form_background {
-    background-color: white;
+    background-color: #426e5d;
     padding: 20px;
     margin: 50px;
 }
