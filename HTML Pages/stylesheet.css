@@ -45,6 +45,7 @@ button {
 button:hover {
     background-color: #fbf7f3;
     color: #20283d;
+    width: 90px;
 }
 
 button:active {
