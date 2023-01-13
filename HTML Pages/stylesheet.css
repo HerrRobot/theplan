@@ -50,12 +50,14 @@ button:hover {
 }
 
 button:active {
+    width: 100px;
     transition-duration: 0.05s;
     color: rgb(187, 186, 186);
     border-color: rgb(187, 186, 186);
 }
 
 .header_button {
+
     background-color: #426e5d;
     border: 2px solid #426e5d;
 }
