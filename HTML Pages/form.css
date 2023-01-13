@@ -1,3 +1,5 @@
+@import url("stylesheet.css");
+
 /* 
 #20283d - black
 #426e5d - green
@@ -5,46 +7,62 @@
 #fbf7f3 - white
 */
 form {
-    display: block;
-    text-align: center;
-    height: 400px;
-    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    align-items: center;
+    row-gap: 10px;
+    margin: 0 auto;
+    border: #20283d ;
 }
 
 #submit_button {
-    background-color: orange;
-    border: 2px solid orange;
+    background-color: var(--green);
+    border: 2px solid var(--green);
 }
 
 #submit_button:hover {
     background-color: white;
-    color: black;
+    color: var(--black);
+    width: 90px;
 }
 
 body {
-    background-color: #fbf7f3;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: var(--white);
+    display: flex;
+    justify-content: center;
 }
 
-button {
+/* button {
     transition-duration: 0.4s;
-    color: #fbf7f3;
+    color: var(--white);
     border-radius: 3px;
     height: 40px;
     width: 70px;
     min-width: 0;
-}
+} */
 
 ul {
     list-style-type: none;
-    text-align: left;
+    text-align: center;
     display: inline-block;
+}
+
+li {
+    text-align: center;
 }
 
 
 #form_background {
-    background-color: #426e5d;
+    display: block;
+    background-color: var(--black);
     padding: 20px;
     margin: 50px;
+    width: 300px;
+    height: 400px;
+    text-align: center;
+
+    border-radius: 50px;
 }
