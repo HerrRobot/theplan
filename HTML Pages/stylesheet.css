@@ -50,7 +50,6 @@ button:hover {
 }
 
 button:active {
-    width: 100px;
     transition-duration: 0.05s;
     color: rgb(187, 186, 186);
     border-color: rgb(187, 186, 186);
@@ -61,16 +60,3 @@ button:active {
     background-color: #426e5d;
     border: 2px solid #426e5d;
 }
-
-/* ksdflkadsj hnsdkulf mds 
-dsaa 
-gdg
-ds 
-fads
- a
- feBlend sad f
- defsa sdf sad
-  
- qer
- g :emptytwh 
- trgfsd sdfd s */
