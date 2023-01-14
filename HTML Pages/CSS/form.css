@@ -52,10 +52,8 @@ li {
     background-color: var(--color1);
     padding: 20px;
     margin: 50px;
-    width: 300px;
-    height: 400px;
+    width: 65%;
     text-align: center;
-
     border-radius: 50px;
 }
 
@@ -77,4 +75,8 @@ button+p {
     width: calc(var(--logowidth)*2);
     height: calc(var(--logoheight)*2);
     text-align: center;
+}
+
+#label_about {
+    color: var(--color4);
 }
