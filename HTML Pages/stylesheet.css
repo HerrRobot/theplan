@@ -9,6 +9,8 @@
     --green: #426e5d;
     --orange: #e5b083;
     --white: #fbf7f3;
+    --logowidth: 55px;
+    --logoheight: 20px;
 }
 
 nav {
@@ -39,6 +41,8 @@ ul.nav_bar_main {
     background-color: var(--orange);
     padding: 8px;
     border-radius: 30px;
+    width: var(--logowidth);
+    height: var(--logoheight);
 }
 
 button {
