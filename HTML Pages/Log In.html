@@ -11,18 +11,21 @@
 
     <div id="form_background">
         <!--the action attribute tells the form where to submit the info-->
-    <form action="" method="post">
-        <ul>
-          <li>
-            <input type="text" id="name" name="user_name" placeholder="Email"/>
-          </li>
-          <li>
-            <input type="email" id="mail" name="user_email" placeholder="Password"/>
-          </li>
-          <li>
-            <button id="submit_button" type="submit">Log In</button>
-          </li>
-        </ul>
+      <form action="" method="post">
+        <div id="logo_container">
+          ThePlan
+        </div>
+        <input type="text" id="name" name="user_name" placeholder="Email"/>
+        <input type="email" id="mail" name="user_email" placeholder="Password"/>
+        <button id="submit_button" type="submit">Log In</button>
+          
+        <p>
+          Don't have an account yet?<br>
+          <a href="Sign Up.html" id="log_in_create_account">
+            Create Account
+          </a>
+        </p>
+        
       </form>
       <!--the type of "submit" submits the form info-->
     </div>

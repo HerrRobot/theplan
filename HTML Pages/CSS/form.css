@@ -36,15 +36,6 @@ body {
     justify-content: center;
 }
 
-/* button {
-    transition-duration: 0.4s;
-    color: var(--white);
-    border-radius: 3px;
-    height: 40px;
-    width: 70px;
-    min-width: 0;
-} */
-
 ul {
     list-style-type: none;
     text-align: center;
@@ -66,4 +57,24 @@ li {
     text-align: center;
 
     border-radius: 50px;
+}
+
+a#log_in_create_account {
+    transition-duration: 0.4s;
+    color: var(--white);
+}
+
+a#log_in_create_account:hover {
+    color: var(--white);
+    font-size: large;
+}
+
+button+p {
+    color: var(--white);
+}
+
+#logo_container {
+    width: calc(var(--logowidth)*2);
+    height: calc(var(--logoheight)*2);
+    text-align: center;
 }
