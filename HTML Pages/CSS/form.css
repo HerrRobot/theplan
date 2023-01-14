@@ -25,13 +25,13 @@ form {
 }
 
 #submit_button:hover {
-    background-color: color4;
-    color: var(--black);
+    background-color: var(--color4);
+    color: var(--color1);
     width: 90px;
 }
 
 body {
-    background-color: var(--white);
+    background-color: var(--color4);
     display: flex;
     justify-content: center;
 }
@@ -61,16 +61,16 @@ li {
 
 a#log_in_create_account {
     transition-duration: 0.4s;
-    color: var(--white);
+    color: var(--color4);
 }
 
 a#log_in_create_account:hover {
-    color: var(--white);
+    color: var(--color4);
     font-size: large;
 }
 
-button+p {
-    color: var(--white);
+a+p {
+    color: var(--color4);
 }
 
 #logo_container {
