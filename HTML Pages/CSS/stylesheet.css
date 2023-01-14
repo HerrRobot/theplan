@@ -77,6 +77,22 @@ button:active {
     border: 2px solid var(--color2);
 }
 
+.edit-button {
+    border-style: none
+}
+
+.edit-button:hover {
+    border-style: solid;
+}
+
+.tr-0 .edit-button {
+    background-color: var(--color3);
+}
+
+.tr-1 .edit-button {
+    background-color: var(--color2);
+}
+
 .about-text {
     text-align: center;
     border-style: solid;
@@ -91,17 +107,35 @@ button:active {
 .grid-container-page-layout {
     display: grid;
     height: 100vh;
-    /* width: 100vh; */
     grid-template-columns: 1fr 10fr 1fr;
     grid-template-rows: 50px, auto;
     grid-template-areas: 
     "nav nav nav"
     "whitespace-left main whitespace-right";
 }
+.grid-container-page-layout-goals {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px, auto;
+    grid-template-areas: 
+    "nav"
+    "main";
+}
 
-main {
-    grid-area: main;
-    padding: 20px;
+table {
+    min-width: 2000px;
+}
+
+.tr-1 {
+    background-color: var(--color2);
+    color: var(--color4);
+}
+
+.tr-0 {
+    background-color: var(--color3);
+    color: var(--color1);
+
 }
 
 .title-header {
@@ -112,6 +146,11 @@ main {
     text-align: center;
 }
 
+main {
+    grid-area: main;
+    padding: 20px;
+}
+
 .main-green {
     background-color: var(--color2);
     color:var(--color4);
@@ -120,6 +159,15 @@ main {
 .main-orange {
     background-color: var(--color3);
     color: var(--color1);
+}
+
+.main-black {
+    background-color: var(--color1);
+    color: var(--color4);
+    padding: 0px;
+    margin-left: -8px;
+    margin-right: -8px;
+    margin-bottom: -8px;
 }
 
 .whitespace-left {
