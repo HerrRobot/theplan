@@ -168,12 +168,6 @@ main {
     text-align: center;
 }
 
-main {
-    grid-area: main;
-    padding: 20px;
-    /* height: 100vh; */
-}
-
 .main-green {
     background-color: var(--color2);
     color:var(--color4);
