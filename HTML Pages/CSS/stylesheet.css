@@ -106,6 +106,7 @@ button:active {
 
 .grid-container-page-layout {
     display: grid;
+    align-content: start;
     height: 100vh;
     grid-template-columns: 1fr 10fr 1fr;
     grid-template-rows: 50px, auto;
@@ -113,6 +114,7 @@ button:active {
     "nav nav nav"
     "whitespace-left main whitespace-right";
 }
+
 .grid-container-page-layout-goals {
     display: grid;
     height: 100vh;
@@ -164,7 +166,7 @@ main {
 main {
     grid-area: main;
     padding: 20px;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 .main-green {
