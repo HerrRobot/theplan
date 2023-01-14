@@ -93,6 +93,11 @@ button:active {
     background-color: var(--color2);
 }
 
+.add-button {
+    background-color: var(--color1);
+    border-style: none
+}
+
 .about-text {
     text-align: center;
     border-style: solid;
