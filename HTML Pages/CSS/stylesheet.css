@@ -137,6 +137,15 @@ table {
     color: var(--color1);
 }
 
+.tr-1 .goal-link{
+    color: var(--color4);
+}
+
+.tr-0 .goal-link{
+    color: var(--color1);
+}
+
+
 
 main {
     position: relative;
