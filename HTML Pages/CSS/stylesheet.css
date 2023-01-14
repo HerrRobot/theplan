@@ -164,6 +164,7 @@ main {
 main {
     grid-area: main;
     padding: 20px;
+    height: 100vh;
 }
 
 .main-green {
