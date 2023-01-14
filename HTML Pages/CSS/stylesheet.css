@@ -17,7 +17,10 @@ nav {
     padding: 10px;
     height: 60px;
     background-color: var(--color1);
-    margin: -8px;
+    margin-left: -8px;
+    margin-right: -8px;
+    margin-top: -8px;
+    grid-area: nav
 }
 
 ul.nav_bar_main {
@@ -72,5 +75,41 @@ button:active {
 
 .grid-container-page-layout {
     display: grid;
-    grid-template-columns: 1fr 7fr 1fr;
+    height: 100vh;
+    /* width: 100vh; */
+    grid-template-columns: 1fr 10fr 1fr;
+    grid-template-rows: 50px, auto;
+    grid-template-areas: 
+    "nav nav nav"
+    "whitespace-left main whitespace-right";
+}
+
+main {
+    grid-area: main;
+    padding: 20px;
+}
+
+.title-header {
+    text-align: center;
+}
+
+.img-caption {
+    text-align: center;
+}
+
+.main-green {
+    background-color: var(--color2);
+    color:var(--color4);
+}
+
+.main-orange {
+    background-color: var(--color2);
+}
+
+.whitespace-left {
+    grid-area: whitespace-left;
+}
+
+.whitespace-right {
+    grid-area: whitespace-right;
 }

@@ -1,10 +1,11 @@
 @import url("stylesheet.css");
 
 /* 
-#20283d - black
-#426e5d - green
-#e5b083 - orange
-#fbf7f3 - white
+Dark colors to light colors.
+#20283d - black - color1
+#426e5d - green - color2
+#e5b083 - orange -  color3
+#fbf7f3 - white - color4
 */
 form {
     display: flex;
@@ -19,12 +20,12 @@ form {
 }
 
 #submit_button {
-    background-color: var(--green);
-    border: 2px solid var(--green);
+    background-color: var(--color2);
+    border: 2px solid var(--color2);
 }
 
 #submit_button:hover {
-    background-color: white;
+    background-color: color4;
     color: var(--black);
     width: 90px;
 }
@@ -57,7 +58,7 @@ li {
 
 #form_background {
     display: block;
-    background-color: var(--black);
+    background-color: var(--color1);
     padding: 20px;
     margin: 50px;
     width: 300px;
