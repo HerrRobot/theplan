@@ -12,6 +12,11 @@ Dark colors to light colors.
     --color4: #fbf7f3;
 }
 
+body{
+    min-width: 430px;
+ }
+
+
 nav {
     border: 2px solid var(--color1);
     padding: 10px;
@@ -70,6 +75,16 @@ button:active {
 
     background-color: var(--color2);
     border: 2px solid var(--color2);
+}
+
+.about-text {
+    text-align: center;
+    border-style: solid;
+    border-radius: 10px;
+}
+
+.about-header {
+    text-align: center;
 }
 
 
