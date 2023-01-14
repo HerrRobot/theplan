@@ -135,7 +135,13 @@ table {
 .tr-0 {
     background-color: var(--color3);
     color: var(--color1);
+}
 
+
+main {
+    position: relative;
+    grid-area: main;
+    padding: 20px;
 }
 
 .title-header {
