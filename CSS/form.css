@@ -7,7 +7,19 @@ Dark colors to light colors.
 #e5b083 - orange -  color3
 #fbf7f3 - white - color4
 */
-form {
+/* form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    align-items: center;
+    row-gap: 10px;
+    margin: 0 auto;
+    border: #20283d ;
+} */
+
+#submit_form {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -67,7 +79,7 @@ a#log_in_create_account:hover {
     font-size: large;
 }
 
-button+p {
+a+p {
     color: var(--color4);
 }
 

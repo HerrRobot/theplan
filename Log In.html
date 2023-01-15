@@ -11,7 +11,7 @@
 
     <div id="form_background">
         <!--the action attribute tells the form where to submit the info-->
-      <form action="index.html" method="post">
+      <!-- <form action="index.html" method="post">
         <div id="logo_container">
           ThePlan
         </div>
@@ -25,7 +25,25 @@
             Create Account
           </a>
         </p>
-      </form>
+      </form> -->
+      <!-- form did not work on github pages so for now we left it as a div. -->
+      <div id="submit_form">
+        <div id="logo_container">
+          ThePlan
+        </div>
+        <input type="email" id="mail" name="user_email" placeholder="Email"/>
+        <input type="password" id="name" name="password" placeholder="Password"/>
+        <a href="index.html">
+          <button class="submit_button" type="submit">Log In</button>
+        </a>
+        
+        <p>
+          Don't have an account yet?<br>
+          <a href="Sign Up.html" id="log_in_create_account">
+            Create Account
+          </a>
+        </p>
+      </div>
       <!--the type of "submit" submits the form info-->
     </div>
     

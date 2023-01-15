@@ -11,7 +11,7 @@
 
     <div id="form_background">
         <!--the action attribute tells the form where to submit the info-->
-      <form action="index.html" method="post">
+      <!-- <form action="index.html" method="post">
         <div id="logo_container">
           ThePlan
         </div>
@@ -43,8 +43,42 @@
           </a>
         </p>
 
-      </form>
+      </form> -->
       <!--the type of "submit" submits the form info-->
+      <div id="submit_form">
+        <div id="logo_container">
+          ThePlan
+        </div>
+        <input type="text" id="text" name="user_id" placeholder="User ID"/>
+        <input type="text" id="text" name="name" placeholder="Full Name"/>
+        <input type="text" id="text" name="address" placeholder="Address"/>
+        <input type="text" id="text" name="country" placeholder="Country"/>
+        <input type="text" id="text" name="zipcode" placeholder="ZIP Code"/>
+        <input type="email" id="mail" name="user_email" placeholder="Email"/>
+        <select name="sex" id="sex">
+          <option value="female">Female</option>
+          <option value="male">Male</option>
+          <option value="other">Other</option>
+        </select>
+        <select name="language" id="language">
+          <option value="english">English</option>
+          <option value="dutch">Dutch</option>
+        </select>
+        <label for="textarea" id="label_about">About/bio:</label>
+        <textarea name="about" id="text" cols="30" rows="10"></textarea>
+        <input type="password" id="password" name="password1" placeholder="Password"/>
+        <input type="password" id="password" name="password2" placeholder=" Repeat Password"/>
+        <a href="index.html">
+          <button class="submit_button" type="submit">Sign Up</button>
+        </a>
+        
+        <p>
+          Already have an account?<br>
+          <a href="Log In.html" id="log_in_create_account">
+            Log In
+          </a>
+        </p>
+      </div>
     </div>
     
       
