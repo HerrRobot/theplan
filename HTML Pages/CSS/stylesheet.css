@@ -10,6 +10,8 @@ Dark colors to light colors.
     --color2: #426e5d;
     --color3: #e5b083;
     --color4: #fbf7f3;
+    font-family: 'Quicksand', sans-serif;
+    line-height: 6mm;
 }
 
 body{
@@ -93,6 +95,15 @@ button:active {
     background-color: var(--color2);
 }
 
+.goal-text .edit-button {
+    height: 30px;
+    width: 20px;
+    padding: 0px;
+    background-color: var(--color1);
+    display: block;
+    margin: auto;
+}
+
 .add-button {
     background-color: var(--color1);
     border-style: none
@@ -111,8 +122,7 @@ button:active {
 
 .grid-container-page-layout {
     display: grid;
-    align-content: start;
-    height: 100vh;
+    align-items: stretch;
     grid-template-columns: 1fr 10fr 1fr;
     grid-template-rows: 50px, auto;
     grid-template-areas: 
@@ -158,6 +168,9 @@ main {
     position: relative;
     grid-area: main;
     padding: 20px;
+    margin-left: -8px;
+    margin-right: -8px;
+    margin-bottom: -8px;
 }
 
 .title-header {
@@ -182,9 +195,7 @@ main {
     background-color: var(--color1);
     color: var(--color4);
     padding: 0px;
-    margin-left: -8px;
-    margin-right: -8px;
-    margin-bottom: -8px;
+    margin-bottom: -30px;
 }
 
 .whitespace-left {
