@@ -7,19 +7,7 @@ Dark colors to light colors.
 #e5b083 - orange -  color3
 #fbf7f3 - white - color4
 */
-/* form {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding-top: 10vh;
-    padding-bottom: 10vh;
-    align-items: center;
-    row-gap: 10px;
-    margin: 0 auto;
-    border: #20283d ;
-} */
-
-#submit_form {
+form {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -30,6 +18,19 @@ Dark colors to light colors.
     margin: 0 auto;
     border: #20283d ;
 }
+
+/* This is for the submit div as replacement for the form that doesn't work on GitHub Pages */
+/* #submit_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    align-items: center;
+    row-gap: 10px;
+    margin: 0 auto;
+    border: #20283d ;
+} */
 
 .submit_button {
     background-color: var(--color2);
