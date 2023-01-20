@@ -95,3 +95,7 @@ a+p {
 #label_about {
     color: var(--color4);
 }
+
+label { 
+    color: var(--color4);
+}
