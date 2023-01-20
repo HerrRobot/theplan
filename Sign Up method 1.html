@@ -22,12 +22,12 @@
 
         <div>
           <label>Password</label>
-          <input id="password" type="password" name="password" placeholder="●●●●●●●●●●●●●●●●●●●"/>
+          <input id="password" type="password" name="password" placeholder="●●●●●●●●●●●●●●●●●●●" required minlength="12"/>
         </div>
         
         <div>
           <label>Repeat Password</label>
-          <input id="password" type="password" name="repeat_password" placeholder="●●●●●●●●●●●●●●●●●●●"/>
+          <input id="password" type="password" name="repeat_password" placeholder="●●●●●●●●●●●●●●●●●●●" required/>
         </div>
 
         <div>
@@ -42,7 +42,7 @@
 
         <div>
           <label for="gender">Gender</label>
-          <select id="gender" name="gender">
+          <select id="gender" name="gender" required>
             <option value="female">Female</option>
             <option value="male">Male</option>
             <option value="other">Other</option>
@@ -69,6 +69,11 @@
         <div>
           <label for="country">Country</label>
           <input id="country" name="country" type="text" placeholder="Netherlands"/>
+        </div>
+
+        <div>
+          <label for="zipcode">ZIP Code</label>
+          <input id="zipcode" type="text" name="zipcode" placeholder="1234AB" minlength="6" maxlength="6">
         </div>
 
         <div>
