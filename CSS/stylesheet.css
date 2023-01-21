@@ -52,6 +52,7 @@ ul.nav_bar_main {
     background-color: var(--color3);
     padding: 8px;
     border-radius: 30px;
+    color: var(--color1);
 }
 
 button {

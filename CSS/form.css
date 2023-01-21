@@ -17,9 +17,10 @@ form {
     row-gap: 10px;
     margin: 0 auto;
     border: #20283d ;
+    color: var(--color4);
 }
 
-/* formlabel {} */
+
 
 /* This is for the submit div as replacement for the form that doesn't work on GitHub Pages */
 /* #submit_form {

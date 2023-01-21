@@ -6,22 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="CSS/form.css">
+    <script defer src="regex_validation_for_2nd_sign_up_form.js"></script>
 </head>
 <body>
 
     <div id="form_background">
-      <form id="signup_form"action="index.html" method="post">
+      <form id="signup_form_version_2">
         <div id="logo_container">
           ThePlan
         </div>
         
-        <div>
+        <div id="user_id_container">
           <label for="user_id">User ID*</label>
           <input id="user_id" name="user_id" type="text" 
-              placeholder="Shifu543" required minlength="5" maxlength="12"/>
+              placeholder="Shifu543"/>
+          <p id="user_id_validation_text"></p>
         </div>
 
-        <div>
+        <!-- <div>
           <label>Password*</label>
           <input id="password" type="password" name="password" 
             placeholder="●●●●●●●●●●●●●●●●●●●" required minlength="12"/>
@@ -31,20 +33,21 @@
           <label>Repeat Password*</label>
           <input id="repeat_password" type="password" name="repeat_password" 
             placeholder="●●●●●●●●●●●●●●●●●●●" required minlength="12"/>
-        </div> 
+        </div>  -->
 
-        <div>
+        <div id="name_container">
           <label for="name">Name*</label>
-          <input type="text" id="name" name="name" placeholder="Marigold Atkinson"
-            required/>
+          <input type="text" id="name" name="name" placeholder="Marigold Atkinson"/>
+          <p id="name_validation_text"></p>
         </div>      
 
-        <div>
+        <div id="email_container">
           <label for="email">Email*</label>
-          <input id="email" name="email" type="email" placeholder="margioldatkinson42@yahoo.co.uk"/>
+          <input id="email" name="email" type="text" placeholder="margioldatkinson42@yahoo.co.uk"/>
+          <p id="email_validation_text"></p>
         </div>
 
-        <div>
+        <!-- <div>
           <label for="gender">Gender*</label>
           <select id="gender" name="gender" required>
               <option value="" disabled selected>Select gender</option>
@@ -52,48 +55,49 @@
               <option value="male">Male</option>
               <option value="other">Other</option>
           </select>
-        </div>
+        </div> -->
 
-        <div>
+        <div id="language_container">
           <label for="language">Language*</label>
-          <select id="language" name="language" required>
+          <select id="language" name="language">
               <option value="" disabled selected>Select language</option>
               <option value="english">English</option>
               <option value="dutch">Dutch</option>
           </select>
+          <p id="language_validation_text"></p>
         </div>
 
-        <div>
+        <!-- <div>
           <label id="label_about" for="textarea">About/bio:</label>
         <textarea name="about" id="text" cols="30" rows="10"></textarea>
-        </div>
+        </div> -->
       
         
-        <div>
-          <label for="country">Country</label>
-          <input id="country" name="country" type="text" placeholder="Netherlands"
-            required/>
+        <div id="country_container">
+          <label for="country">Country*</label>
+          <input id="country" name="country" type="text" placeholder="Netherlands"/>
+          <p id="country_validation_text"></p>
         </div>
 
-        <div>
+        <!-- <div>
           <label for="city">City</label>
           <input id="city" name="city" type="text" placeholder="Breda"/>
-        </div>
+        </div> -->
 
-        <div>
+        <!-- <div>
           <label for="zipcode">ZIP Code*</label>
           <input id="zipcode" type="text" name="zipcode" placeholder="1234AB" minlength="6" maxlength="6">
-        </div>
+        </div> -->
 
-        <div>
+        <!-- <div>
           <label for="street">Street</label>
           <input id="street" name="street" type="text" placeholder="Hugo de Dorpstraat"/>
-        </div>
+        </div> -->
 
-        <div>
+        <!-- <div>
           <label for="street_number">Street Number</label>
           <input id="street_number" name="street_number" type="text" placeholder="57B"/>
-        </div>
+        </div> -->
       
 
         <div>
@@ -108,8 +112,6 @@
         <div>
           <button class="submit_button" type="submit">Sign Up</button>
         </div>
-
-        <script src="regexp.js"></script>
 
         <div>
           <p>
