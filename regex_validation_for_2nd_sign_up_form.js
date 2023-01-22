@@ -2,41 +2,46 @@ const form = document.getElementById('signup_form_version_2');
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    AlexMethods();
+    let allFieldsValid = AlexMethods();
     AndreiMethods();
+    if(allFieldsValid) {
+        displayAlert();
+    }
 });
 
 function AlexMethods() {
-    validateOther();
+    return validateOther();
 }
 
 function validateOther() {
-    let password = document.getElementById("password").value;
+    var password = document.getElementById("password").value;
     let password_element = document.getElementById("password");
     let password_validation_text = document.getElementById("password_validation_text");
 
-    let repeat_password = document.getElementById("repeat_password").value;
+    var repeat_password = document.getElementById("repeat_password").value;
     let repeat_password_element = document.getElementById("repeat_password");
     let repeat_password_validation_text = document.getElementById("repeat_password_validation_text");
 
-    let zipcode = document.getElementById("zipcode").value;
+    var zipcode = document.getElementById("zipcode").value;
     let zipcode_element = document.getElementById("zipcode");
     let zipcode_validation_text = document.getElementById("zipcode_validation_text");
 
-    let gender = document.getElementById("gender").value;
+    var gender = document.getElementById("gender").value;
     let gender_element = document.getElementById("gender");
     let gender_validation_text = document.getElementById("gender_validation_text");
 
-    let terms = document.getElementById("terms_and_conditions").checked;
+    var terms = document.getElementById("terms_and_conditions").checked;
     let terms_element = document.getElementById("terms_and_conditions");
     let terms_validation_text = document.getElementById("terms_and_conditions_validation_text");
 
-
-    testPasswordValidity(password, password_element, password_validation_text);
-    testRepeatPasswordValidity(password, repeat_password, repeat_password_element, repeat_password_validation_text);
-    testZipcodeValidity(zipcode, zipcode_element, zipcode_validation_text);
-    testGenderValidity(gender, gender_element, gender_validation_text);
+    let allFieldsValid = true;
+    allFieldsValid = allFieldsValid & testPasswordValidity(password, password_element, password_validation_text) &
+    testRepeatPasswordValidity(password, repeat_password, repeat_password_element, repeat_password_validation_text) &
+    testZipcodeValidity(zipcode, zipcode_element, zipcode_validation_text) &
+    testGenderValidity(gender, gender_element, gender_validation_text) &
     testTermsValidity(terms, terms_element, terms_validation_text);
+
+    return allFieldsValid;
 }
 
 function testPasswordValidity(password, password_element, password_validation_text) {
@@ -81,6 +86,7 @@ function testPasswordValidity(password, password_element, password_validation_te
         password_validation_text.innerHTML = password_invalid_text;
         invalidInputRedValidationText(password_validation_text);
     }
+    return password_valid;
 
 }
 
@@ -89,14 +95,17 @@ function testRepeatPasswordValidity(password, repeat_password, repeat_password_e
         invalidInputRedBorder(repeat_password_element);
         repeat_password_validation_text.innerHTML = "This field cannot be empty.";
         invalidInputRedValidationText(repeat_password_validation_text);
+        return false;
     } else if(password === repeat_password) {
         validInputGreenBorder(repeat_password_element);
         repeat_password_validation_text.innerHTML = "Looks good!";
         validInputGreenValidationText(repeat_password_validation_text);
+        return true;
     } else {
         invalidInputRedBorder(repeat_password_element);
         repeat_password_validation_text.innerHTML = "Password fields do not match.";
         invalidInputRedValidationText(repeat_password_validation_text);
+        return false
     }
 }
 
@@ -107,14 +116,17 @@ function testZipcodeValidity(zipcode, zipcode_element, zipcode_validation_text) 
         invalidInputRedBorder(zipcode_element);
         zipcode_validation_text.innerHTML = "This field cannot be empty";
         invalidInputRedValidationText(zipcode_validation_text);
+        return false;
     } else if(!zipcode_pattern.test(zipcode)) {
         invalidInputRedBorder(zipcode_element);
         zipcode_validation_text.innerHTML = "Please enter a zipcode in the valid format, something like: 1234AB";
         invalidInputRedValidationText(zipcode_validation_text);
+        return false;
     } else {
         validInputGreenBorder(zipcode_element);
         zipcode_validation_text.innerHTML = "Looks good!";
         validInputGreenValidationText(zipcode_validation_text);
+        return true;
     }
 }
 
@@ -123,10 +135,12 @@ function testGenderValidity(gender, gender_element, gender_validation_text) {
         invalidInputRedBorder(gender_element);
         gender_validation_text.innerHTML = "Please select your gender.";
         invalidInputRedValidationText(gender_validation_text);
+        return false;
     } else {
         validInputGreenBorder(gender_element);
         gender_validation_text.innerHTML = "Looks good!";
         validInputGreenValidationText(gender_validation_text);
+        return true;
     }
 }
 
@@ -135,10 +149,12 @@ function testTermsValidity(terms, terms_element, terms_validation_text) {
         invalidInputRedBorder(terms_element);
         terms_validation_text.innerHTML = "Please agree to the Terms and Conditions.";
         invalidInputRedValidationText(terms_validation_text);
+        return false;
     } else {
         validInputGreenBorder(terms_element);
         terms_validation_text.innerHTML = "Looks good!";
         validInputGreenValidationText(terms_validation_text);
+        return true;
     }
 }
 
@@ -306,4 +322,20 @@ function validate() {
 
   function validInputGreenValidationText(text) {
     text.style.color = "green";
+  }
+
+  function displayAlert() {
+    alert("You have successfully submitted this form with the values\n" + 
+    "UserID: " + document.getElementById("user_id").value + 
+    "\nPassword: " + document.getElementById("password").value + 
+    "\nName: " + document.getElementById("name").value +
+    "\nEmail: " + document.getElementById("email").value +
+    "\nGender: " + document.getElementById("gender").value +
+    "\nLanguage: " + document.getElementById("language").value +
+    "\nAbout/bio: " + document.getElementById("about").value +
+    "\nCountry: " + document.getElementById("country").value +
+    "\nCity: " + document.getElementById("city").value +
+    "\nZIP Code: " + document.getElementById("zipcode").value +
+    "\nStreet: " + document.getElementById("street").value +
+    "\nStreet Number: " + document.getElementById("street_number").value);
   }
