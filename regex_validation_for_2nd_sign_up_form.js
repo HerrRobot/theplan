@@ -2,38 +2,143 @@ const form = document.getElementById('signup_form_version_2');
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    // AlexMethods();
+    AlexMethods();
     AndreiMethods();
 });
 
 function AlexMethods() {
-    //password check
-    //gotta add symbol test
-    let password = document.getElementById('password').value;
-    console.log(password);
-    let passwordValid = 
-        /[a-z]/.test(password) &
-        /[A-Z]/.test(password) &
-        /[0-9]/.test(password);
-    if(passwordValid) {
-        console.log("password is valid");
+    validateOther();
+}
+
+function validateOther() {
+    let password = document.getElementById("password").value;
+    let password_element = document.getElementById("password");
+    let password_validation_text = document.getElementById("password_validation_text");
+
+    let repeat_password = document.getElementById("repeat_password").value;
+    let repeat_password_element = document.getElementById("repeat_password");
+    let repeat_password_validation_text = document.getElementById("repeat_password_validation_text");
+
+    let zipcode = document.getElementById("zipcode").value;
+    let zipcode_element = document.getElementById("zipcode");
+    let zipcode_validation_text = document.getElementById("zipcode_validation_text");
+
+    let gender = document.getElementById("gender").value;
+    let gender_element = document.getElementById("gender");
+    let gender_validation_text = document.getElementById("gender_validation_text");
+
+    let terms = document.getElementById("terms_and_conditions").checked;
+    let terms_element = document.getElementById("terms_and_conditions");
+    let terms_validation_text = document.getElementById("terms_and_conditions_validation_text");
+
+
+    testPasswordValidity(password, password_element, password_validation_text);
+    testRepeatPasswordValidity(password, repeat_password, repeat_password_element, repeat_password_validation_text);
+    testZipcodeValidity(zipcode, zipcode_element, zipcode_validation_text);
+    testGenderValidity(gender, gender_element, gender_validation_text);
+    testTermsValidity(terms, terms_element, terms_validation_text);
+}
+
+function testPasswordValidity(password, password_element, password_validation_text) {
+    const password_pattern_1 = /[a-z]/g;
+    const password_pattern_2 = /[A-Z]/g;
+    const password_pattern_3 = /[0-9]/g;
+    const password_pattern_4 = /[!-/:-@\[-`{-~]/g;
+    const password_length_patern = /^.{12,}/;
+    //this is where I got the idea for the symbol matching
+    //https://stackoverflow.com/questions/8359566/regex-to-match-symbols
+    let password_valid = true;
+    let password_invalid_text = "Please enter a valid password which ";
+    if(!password_pattern_1.test(password)) {
+        password_valid = false;
+        password_invalid_text += "has at least one lowercase letter, ";
+    }
+    if(!password_pattern_2.test(password)) {
+        password_valid = false;
+        password_invalid_text += "has at least one uppercase letter, ";
+    }
+    if(!password_pattern_3.test(password)) {
+        password_valid = false;
+        password_invalid_text += "has at least one digit, ";
+    }
+    if(!password_pattern_4.test(password)) {
+        password_valid = false;
+        password_invalid_text += "has at least one symbol, ";
+    }
+    if(!password_length_patern.test(password) || password == null || password === "") {
+        password_valid = false;
+        password_invalid_text += "is at least 12 characters long.";
     } else {
-        console.log("password is invalid");
+        password_invalid_text = password_invalid_text.substring(0, password_invalid_text.length-2) + ".";
     }
 
-    //zipcode check
-    let zipcode = document.getElementById('zipcode').value;
-    for(let i = 0; i < 6; i++) {
-        if(i < 4 && !/[0-9]/.test(zipcode.charAt(i))) {
-            console.log("invalid zipcode bad nums");
-            break;
-        } else if(i >= 4 && !/[A-Z]/.test(zipcode.charAt(i))) {
-            console.log("invalid zipcode bad letters");
-            break;
-        }
-        if(i == 5) {
-            console.log("zipcode is valid");
-        }
+    if(password_valid) {
+        validInputGreenBorder(password_element);
+        password_validation_text.innerHTML = "Looks good!";
+        validInputGreenValidationText(password_validation_text);
+    } else {
+        invalidInputRedBorder(password_element);
+        password_validation_text.innerHTML = password_invalid_text;
+        invalidInputRedValidationText(password_validation_text);
+    }
+
+}
+
+function testRepeatPasswordValidity(password, repeat_password, repeat_password_element, repeat_password_validation_text) {
+    if(repeat_password == null || repeat_password === "") {
+        invalidInputRedBorder(repeat_password_element);
+        repeat_password_validation_text.innerHTML = "This field cannot be empty.";
+        invalidInputRedValidationText(repeat_password_validation_text);
+    } else if(password === repeat_password) {
+        validInputGreenBorder(repeat_password_element);
+        repeat_password_validation_text.innerHTML = "Looks good!";
+        validInputGreenValidationText(repeat_password_validation_text);
+    } else {
+        invalidInputRedBorder(repeat_password_element);
+        repeat_password_validation_text.innerHTML = "Password fields do not match.";
+        invalidInputRedValidationText(repeat_password_validation_text);
+    }
+}
+
+function testZipcodeValidity(zipcode, zipcode_element, zipcode_validation_text) {
+    const zipcode_pattern = /^[0-9]{4,4}[a-z]{2,2}$/gi;
+
+    if(zipcode == null || zipcode === "") {
+        invalidInputRedBorder(zipcode_element);
+        zipcode_validation_text.innerHTML = "This field cannot be empty";
+        invalidInputRedValidationText(zipcode_validation_text);
+    } else if(!zipcode_pattern.test(zipcode)) {
+        invalidInputRedBorder(zipcode_element);
+        zipcode_validation_text.innerHTML = "Please enter a zipcode in the valid format, something like: 1234AB";
+        invalidInputRedValidationText(zipcode_validation_text);
+    } else {
+        validInputGreenBorder(zipcode_element);
+        zipcode_validation_text.innerHTML = "Looks good!";
+        validInputGreenValidationText(zipcode_validation_text);
+    }
+}
+
+function testGenderValidity(gender, gender_element, gender_validation_text) {
+    if(gender == null || gender === "") {
+        invalidInputRedBorder(gender_element);
+        gender_validation_text.innerHTML = "Please select your gender.";
+        invalidInputRedValidationText(gender_validation_text);
+    } else {
+        validInputGreenBorder(gender_element);
+        gender_validation_text.innerHTML = "Looks good!";
+        validInputGreenValidationText(gender_validation_text);
+    }
+}
+
+function testTermsValidity(terms, terms_element, terms_validation_text) {
+    if(!terms) {
+        invalidInputRedBorder(terms_element);
+        terms_validation_text.innerHTML = "Please agree to the Terms and Conditions.";
+        invalidInputRedValidationText(terms_validation_text);
+    } else {
+        validInputGreenBorder(terms_element);
+        terms_validation_text.innerHTML = "Looks good!";
+        validInputGreenValidationText(terms_validation_text);
     }
 }
 
@@ -71,7 +176,7 @@ function validate() {
 
   function testUserIDValidity(user_id, user_id_element, user_id_validation_text) {
     const user_id_pattern = /^[A-Z].*(\d|\W)$/g;
-    const user_id_length_pattern = /^.{5,12}2$/g;
+    const user_id_length_pattern = /^.{5,12}$/g;
     const user_id_nowhitespace_pattern = /^[^\s]*$/g;
 
     if(user_id == null || user_id === "") {

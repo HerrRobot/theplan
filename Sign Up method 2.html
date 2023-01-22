@@ -23,17 +23,19 @@
           <p id="user_id_validation_text"></p>
         </div>
 
-        <!-- <div>
+        <div>
           <label>Password*</label>
           <input id="password" type="password" name="password" 
-            placeholder="●●●●●●●●●●●●●●●●●●●" required minlength="12"/>
+            placeholder="●●●●●●●●●●●●●●●●●●●"/>
+            <p id="password_validation_text"></p>
         </div>
         
         <div>
           <label>Repeat Password*</label>
           <input id="repeat_password" type="password" name="repeat_password" 
-            placeholder="●●●●●●●●●●●●●●●●●●●" required minlength="12"/>
-        </div>  -->
+            placeholder="●●●●●●●●●●●●●●●●●●●"/>
+            <p id="repeat_password_validation_text"></p>
+        </div> 
 
         <div id="name_container">
           <label for="name">Name*</label>
@@ -47,15 +49,16 @@
           <p id="email_validation_text"></p>
         </div>
 
-        <!-- <div>
+        <div>
           <label for="gender">Gender*</label>
-          <select id="gender" name="gender" required>
+          <select id="gender" name="gender">
               <option value="" disabled selected>Select gender</option>
               <option value="female">Female</option>
               <option value="male">Male</option>
               <option value="other">Other</option>
           </select>
-        </div> -->
+          <p id="gender_validation_text"></p>
+        </div>
 
         <div id="language_container">
           <label for="language">Language*</label>
@@ -67,10 +70,10 @@
           <p id="language_validation_text"></p>
         </div>
 
-        <!-- <div>
+        <div>
           <label id="label_about" for="textarea">About/bio:</label>
         <textarea name="about" id="text" cols="30" rows="10"></textarea>
-        </div> -->
+        </div>
       
         
         <div id="country_container">
@@ -79,30 +82,32 @@
           <p id="country_validation_text"></p>
         </div>
 
-        <!-- <div>
+        <div>
           <label for="city">City</label>
           <input id="city" name="city" type="text" placeholder="Breda"/>
-        </div> -->
+        </div>
 
-        <!-- <div>
+        <div>
           <label for="zipcode">ZIP Code*</label>
-          <input id="zipcode" type="text" name="zipcode" placeholder="1234AB" minlength="6" maxlength="6">
-        </div> -->
+          <input id="zipcode" type="text" name="zipcode" placeholder="1234AB">
+          <p id="zipcode_validation_text"></p>
+        </div>
 
-        <!-- <div>
+        <div>
           <label for="street">Street</label>
           <input id="street" name="street" type="text" placeholder="Hugo de Dorpstraat"/>
-        </div> -->
+        </div>
 
-        <!-- <div>
+        <div>
           <label for="street_number">Street Number</label>
           <input id="street_number" name="street_number" type="text" placeholder="57B"/>
-        </div> -->
+        </div>
       
 
         <div>
-          <input id="terms_and_conditions" name="terms_and_conditions" type="checkbox" required>
+          <input id="terms_and_conditions" name="terms_and_conditions" type="checkbox">
           <label for="terms_and_conditions">Agree to our terms and conditions</label>
+          <p id="terms_and_conditions_validation_text"></p>
         </div>
 
         <div>
