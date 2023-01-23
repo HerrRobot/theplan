@@ -7,6 +7,14 @@ Dark colors to light colors.
 #e5b083 - orange -  color3
 #fbf7f3 - white - color4
 */
+
+#behavioral_stats_container {
+    position: relative;
+    left: 20rem;
+    color: red;
+}
+
+
 form {
     display: flex;
     flex-direction: column;
