@@ -9,10 +9,8 @@ var time_spent_container;
 var key_presses_container;
 var characters_typed_container;
 
-
 init();
-// eventListeners();
-
+eventListeners();
 
 
 
@@ -30,11 +28,19 @@ function init() {
 }
 
 function eventListeners() {
-    window.addEventListener("click", function() {
+    signup_form_body.addEventListener("click", function() {
         mouse_clicks++;
     });
-}
 
+    document.querySelectorAll(".sign_up_input_field").forEach(
+        item => {
+            item.addEventListener("keypress", function() {
+                key_presses++;
+            });
+        }
+    )
+    
+}
 
 function updateStatistics() {
     mouse_clicks_container.innerHTML = 
