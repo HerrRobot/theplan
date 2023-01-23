@@ -450,6 +450,10 @@ function validInputGreenValidationText(text) {
     text.style.color = "green";
 }
 
+/**
+ * Displays an alert with the data input by the user.
+ * Thsi function is called in case all input was valid.
+ */
 function displayAlert() {
     alert("You have successfully submitted this form with the values\n" + 
         "UserID: " + document.getElementById("user_id").value + 
