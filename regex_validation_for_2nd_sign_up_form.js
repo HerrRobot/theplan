@@ -2,11 +2,13 @@ const form = document.getElementById('signup_form_version_2');
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    let allFieldsValid = AlexMethods();
-    AndreiMethods();
-    if(allFieldsValid) {
-        displayAlert();
-    }
+    // let allFieldsValid = AlexMethods();
+    // AndreiMethods();
+    // if(allFieldsValid) {
+    //     displayAlert();
+    // }
+    updateStatistics();
+    displayStatistics();
 });
 
 function AlexMethods() {

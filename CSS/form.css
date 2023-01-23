@@ -12,6 +12,7 @@ Dark colors to light colors.
     position: relative;
     left: 20rem;
     color: red;
+    display: none;
 }
 
 
