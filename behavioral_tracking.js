@@ -1,6 +1,8 @@
+var mouse_clicks
+
 window.onload = function() {
     init();
-    
+
 }
 
 function init() {
