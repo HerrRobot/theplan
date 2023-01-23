@@ -13,7 +13,9 @@ init();
 eventListeners();
 
 
-
+/**
+ * Initializes variables necessary for behavioral tracking.
+ */
 function init() {
     mouse_clicks = 0;
     time_spent = 0;
@@ -27,11 +29,16 @@ function init() {
     characters_typed_container = document.getElementById("characters_typed_container");
 }
 
+/**
+ * Initializes event listeners necessary for behavioral tracking.
+ */
 function eventListeners() {
+    // 1. Mouse Click event listener
     signup_form_body.addEventListener("click", function() {
         mouse_clicks++;
     });
 
+    // 3. Keypress event listener
     document.querySelectorAll(".sign_up_input_field").forEach(
         item => {
             item.addEventListener("keypress", function() {
@@ -42,6 +49,10 @@ function eventListeners() {
     
 }
 
+/**
+ * Adds the statistics to the behvaioral stats textbox called behavioral_stats_container.
+ * This function is called once the form is submitted. (in regex_validation_for_2nd_sign_up_form.js)
+ */
 function updateStatistics() {
     mouse_clicks_container.innerHTML = 
         "Number of mouse clicks: " + mouse_clicks;
@@ -53,6 +64,10 @@ function updateStatistics() {
         "Total number of characters typed: " + characters_typed;
 }
 
+/**
+ * Makes behavioral_stats_container visible.
+ * This function is called once the form is submitted. (in regex_validation_for_2nd_sign_up_form.js)
+ */
 function displayStatistics() {
     behavioral_stats_container.style.display = "block";
 }
