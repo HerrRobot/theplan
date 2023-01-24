@@ -4,7 +4,7 @@ var user_id;
 // This is the user_id input field
 var user_id_element;
 
-// This is the feedback text that appears undeneath the input field, for example "Please provide a user ID."
+// This is the feedback text that appears underneath the input field, for example "Please provide a user ID."
 // For now it is empty, but it will be altered after the validation process.
 var user_id_validation_text;
 
@@ -320,7 +320,9 @@ function testTermsValidity(terms, terms_element, terms_validation_text) {
 }
 
 /**
- * Validates the input user_id
+ * Validates the input user_id by checking the ASCII values of
+ * the individual chars inside the input.
+ * 
  * @param {*} user_id input in text format
  * @param {*} user_id_element input field
  * @param {*} user_id_validation_text feedback text message about the user's input
@@ -328,41 +330,63 @@ function testTermsValidity(terms, terms_element, terms_validation_text) {
  */
 function testUserIDValidity(user_id, user_id_element, user_id_validation_text) {
     var valid = false;
-    const user_id_pattern = /^[A-Z].*(\d|\W)$/g;
-    const user_id_length_pattern = /^.{5,12}$/g;
-    const user_id_nowhitespace_pattern = /^[^\s]*$/g;
+
+    var length = user_id.length;
+
 
     if(user_id == null || user_id === "") {
         invalidInputRedBorder(user_id_element);
         user_id_validation_text.innerHTML = 
             "Please provide a user ID.";
         invalidInputRedValidationText(user_id_validation_text);
+        return valid;
     }
-    else if(!user_id_pattern.test(user_id)) {
+    else if(
+        // If the following two conditions are not satisfied, the input is invalid.
+        !(
+
+        // Condition 1: The first letter needs to be a capitalized letter A-Z
+        (65 <= user_id.charCodeAt(0) &&  (user_id.charCodeAt(0) <= 90)) &&
+
+        // Condition 2: The last letter needs to be a non-letter - not from A-Z 
+        (!(65 <=user_id.charCodeAt(length - 1) &&  user_id.charCodeAt(length - 1) <= 90) ||
+
+            // or a-z
+            (97 <= user_id.charCodeAt(length - 1) &&  user_id.charCodeAt(length - 1) <= 122)))) {
+
         invalidInputRedBorder(user_id_element);
         user_id_validation_text.innerHTML = 
             "The user ID needs to start with an uppercase letter and end with a digit/special character.";
         invalidInputRedValidationText(user_id_validation_text);
+        return valid;
     }
-    else if(!user_id_length_pattern.test(user_id)) {
+        // The length needs to be within [5, 12] characters
+    else if(!(length >= 5 && length <= 12)) {
         invalidInputRedBorder(user_id_element);
         user_id_validation_text.innerHTML = 
             "The user ID needs to be at least 5 and at most 12 characters long.";
         invalidInputRedValidationText(user_id_validation_text);
+        return valid;
+    }
 
+    // The username can't have whitespaces or suspicious characters
+    for(var i = 0; i < length; i++) {
+        if(user_id.codePointAt(i) <= 32 || user_id.codePointAt(i) == 127) {
+            invalidInputRedBorder(user_id_element);
+            user_id_validation_text.innerHTML = 
+                "The user ID can't have whitespaces or suspicious characters.";
+            invalidInputRedValidationText(user_id_validation_text);
+            return valid;
+        }
     }
-    else if(!user_id_nowhitespace_pattern.test(user_id)) {
-        invalidInputRedBorder(user_id_element);
-        user_id_validation_text.innerHTML = 
-            "The user ID can't have whitespaces.";
-        invalidInputRedValidationText(user_id_validation_text);
-    }
-    else {
-        validInputGreenBorder(user_id_element);
-        valid = true;
-        user_id_validation_text.innerHTML = "Looks good!";
-        validInputGreenValidationText(user_id_validation_text);
-    }
+
+
+    // All valididty checks passed
+    valid = true;
+    validInputGreenBorder(user_id_element);
+    user_id_validation_text.innerHTML = "Looks good!";
+    validInputGreenValidationText(user_id_validation_text);
+
 
     return valid;
 }
@@ -375,65 +399,179 @@ function testUserIDValidity(user_id, user_id_element, user_id_validation_text) {
  * @returns validity of input
  */
 function testNameValidity(name, name_element, name_validation_text) {
-    var valid = false;
-    const name_pattern = /^[A-Z][a-z]+((\s)+[A-Z][a-z]+)*$/g;
+    // const name_pattern = /^[A-Z][a-z]+((\s)+[A-Z][a-z]+)*$/g;
 
     if(name == null || name === "") {
         invalidInputRedBorder(name_element);
         name_validation_text.innerHTML = 
             "Please provide a name.";
         invalidInputRedValidationText(name_validation_text);
+        return false;
     }
-    else if(!name_pattern.test(name)) {
-        invalidInputRedBorder(name_element);
+
+    var names = name.split(" ");
+    
+    for(var i = 0; i < names.length; i++) {
+        var n = names[i];
+        
+        // Every name needs to start with a capital letter A-Z
+        if(!(65 <= n.charCodeAt(0) && n.charCodeAt(0) <= 90)) {
+            invalidName(name_element, name_validation_text);
+            return false;
+        }
+
+        for(var j = 1; j < n.length; j++) {
+            // The rest of the letters need to be lowercase a-z
+            if(!(97 <= n.charCodeAt(j) &&  n.charCodeAt(j) <= 122)) {
+                invalidName(name_element, name_validation_text);
+                return false;
+            }
+        }
+    }
+
+    validInputGreenBorder(name_element);
+    name_validation_text.innerHTML = "Looks good!";
+    validInputGreenValidationText(name_validation_text);
+
+    return true;
+}
+
+/**
+ * This function gets invoked when it is discovered that it is not the case that
+ * 1. Each name starts with a capital letter.
+ * 2. Each name contains only lowercase letters except for the first capital letter.
+ * 
+ * @param {*} name input in text format
+ * @param {*} name_element input field
+ * @param {*} name_validation_text feedback text message about the user's input
+ */
+function invalidName(name_element, name_validation_text) {
+    invalidInputRedBorder(name_element);
         name_validation_text.innerHTML = 
             "Each name must be separated by whitespace, start with a capital letter, and only contain letters.";
         invalidInputRedValidationText(name_validation_text);
-    }
-    else {
-        valid = true;
-        validInputGreenBorder(name_element);
-        name_validation_text.innerHTML = "Looks good!";
-        validInputGreenValidationText(name_validation_text);
-    }
-
-    return valid;
 }
 
 /**
  * Validates the input email
+ * 
  * @param {*} email input in text format
  * @param {*} email_element input field
  * @param {*} email_validation_text feedback text message about the user's input
- * @returns valididty of input
  */
 function testEmailValidity(email, email_element, email_validation_text) {
-    var valid = false;
-
     // template for valid email addresses at
     // https://help.xmatters.com/ondemand/trial/valid_email_format.htm#:~:text=A%20valid%20email%20address%20consists,com%22%20is%20the%20email%20domain.
 
-    const email_pattern = 
-        /^\w([-\._]\w|\w)+@(\w|\w[-_]\w)+\.[a-z]{2,}$/i;
+    // const email_pattern = 
+    //     /^\w([-\._]\w|\w)+@(\w|\w[-_]\w)+\.[a-z]{2,}$/i;
 
     if(email == null || email === "") {
         invalidInputRedBorder(email_element);
         email_validation_text.innerHTML = "Please provide an email address.";
         invalidInputRedValidationText(email_validation_text);
+        return false;
     }
-    else if(!email_pattern.test(email)) {
-        invalidInputRedBorder(email_element);
-        email_validation_text.innerHTML = "The email needs to be a valid email address.";
-        invalidInputRedValidationText(email_validation_text);
-    }
-    else {
-        valid = true;
-        validInputGreenBorder(email_element);
-        email_validation_text.innerHTML = "Looks good!";
-        validInputGreenValidationText(email_validation_text);
+    
+    email = email.toLowerCase();
+    var splitByAt = email.split("@");
+
+    if(splitByAt.length != 2) {
+        invalidEmail(email_element, email_validation_text);
+        return false;
     }
 
-    return valid;
+    var prefix = splitByAt[0];
+    var domain = splitByAt[1];
+
+    // Check prefix
+    for(var i = 0; i < prefix.length; i++) {
+        // Special characters (periods, dashes, or underscores) need to be surrouned by letters/digits
+        var currentChar = prefix.charCodeAt(i);
+        if((currentChar == 46 || currentChar == 45 || currentChar == 95) 
+            && ((i == 0 || i == prefix.length - 1) || 
+                !(((97 <= prefix.charCodeAt(i - 1) &&  prefix.charCodeAt(i - 1) <= 122) ||
+                    (48 <= prefix.charCodeAt(i - 1) &&  prefix.charCodeAt(i - 1) <= 57))
+                    &&
+                    ((97 <= prefix.charCodeAt(i + 1) &&  prefix.charCodeAt(i + 1) <= 122) ||
+                    (48 <= prefix.charCodeAt(i + 1) &&  prefix.charCodeAt(i + 1) <= 57))))) {
+            invalidEmail(email_element, email_validation_text);
+            return false;
+        }
+
+        // Only other allowed characters are letters/digits.
+        if(!((97 <= currentChar &&  currentChar <= 122) ||
+            (48 <= currentChar &&  currentChar <= 57))) {
+            invalidEmail(email_element, email_validation_text);
+            return false;
+        }
+    }
+
+    // Check domain
+    var domainSplitByPeriod = domain.split(".");
+    
+    if(domainSplitByPeriod.length != 2 || domainSplitByPeriod[1].length < 2) {
+        invalidEmail(email_element, email_validation_text);
+        return false;
+    }
+    
+    var domain0 = domainSplitByPeriod[0];
+    var domain1 = domainSplitByPeriod[1];
+
+    // Check domain before period.
+    for(var i = 0; i < domain0.length; i++) {
+        // Special characters ( dashes, or underscores) need to be surrouned by letters/digits
+        var currentChar = domain0.charCodeAt(i);
+        if((currentChar == 45 || currentChar == 95) 
+            && ((i == 0 || i == domain0.length - 1) || 
+                !(((97 <= domain0.charCodeAt(i - 1) &&  domain0.charCodeAt(i - 1) <= 122) ||
+                    (48 <= domain0.charCodeAt(i - 1) &&  domain0.charCodeAt(i - 1) <= 57))
+                    &&
+                    ((97 <= domain0.charCodeAt(i + 1) &&  domain0.charCodeAt(i + 1) <= 122) ||
+                    (48 <= domain0.charCodeAt(i + 1) &&  domain0.charCodeAt(i + 1) <= 57))))) {
+            invalidEmail(email_element, email_validation_text);
+            return false;
+        }
+
+        // Only other allowed characters are letters/digits.
+        if(!((97 <= currentChar &&  currentChar <= 122) ||
+            (48 <= currentChar &&  currentChar <= 57))) {
+            invalidEmail(email_element, email_validation_text);
+            return false;
+        }
+    }
+
+    // Check domain after period.
+    for(var i = 0; i < domain1.length; i++) {
+        // Special characters ( dashes, or underscores) need to be surrouned by letters/digits
+        var currentChar = domain1.charCodeAt(i);
+
+        // Only allowed characters are letters.
+        if(!(97 <= currentChar &&  currentChar <= 122)) {
+            invalidEmail(email_element, email_validation_text);
+            return false;
+        }
+    }
+
+
+    // All checks passed
+    validInputGreenBorder(email_element);
+    email_validation_text.innerHTML = "Looks good!";
+    validInputGreenValidationText(email_validation_text);
+
+    return true;
+}
+
+/**
+ * This function gets called when an invalid email has been input.
+ * 
+ * @param {*} email_element input field
+ * @param {*} email_validation_text feedback text message about the user's input
+ */
+function invalidEmail(email_element, email_validation_text) {
+    invalidInputRedBorder(email_element);
+    email_validation_text.innerHTML = "The email needs to be a valid email address.";
+    invalidInputRedValidationText(email_validation_text);
 }
 
 /**
@@ -468,30 +606,39 @@ function testLanguageValidity(language, language_element, language_validation_te
  * @returns validity of input
  */
 function testCountryValidity(country, country_element, country_validation_text) {
-    var valid = false;
     // The country input is case insensitive because 
     // they can be searched in a database regardless of the case
-    const country_pattern = 
-        /^[a-z](\s|[a-z])*$/i;
 
     if(country == null || country === "") {
         invalidInputRedBorder(country_element);
         country_validation_text.innerHTML = "Please input your country.";
-        invalidInputRedValidationText(language_validation_text);
-    }
-    else if(!country_pattern.test(country)) {
-        invalidInputRedBorder(country_element);
-        country_validation_text.innerHTML = "Please input a valid country.";
         invalidInputRedValidationText(country_validation_text);
-    }
-    else {
-        valid = true;
-        validInputGreenBorder(country_element);
-        country_validation_text.innerHTML = "Looks good!";
-        validInputGreenValidationText(country_validation_text);
+        return false;
     }
 
-    return valid;
+    for(var i = 0; i < country.length; i++) {
+            // The country needs to have capital letters...
+        if(!((65 <= country.charCodeAt(i) &&  country.charCodeAt(i) <= 90) ||
+
+            // ...or lowercase letters...
+            (97 <= country.charCodeAt(i) &&  country.charCodeAt(i) <= 122) ||
+
+            // ...or whitespaces...
+            (country.charCodeAt(i) == 32))) {
+
+            invalidInputRedBorder(country_element);
+            country_validation_text.innerHTML = "Please input a valid country.";
+            invalidInputRedValidationText(country_validation_text);
+            return false;
+        }           
+    }
+
+
+    validInputGreenBorder(country_element);
+    country_validation_text.innerHTML = "Looks good!";
+    validInputGreenValidationText(country_validation_text);
+
+    return true;
 }
 
 /**

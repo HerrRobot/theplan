@@ -477,7 +477,7 @@ function testCountryValidity(country, country_element, country_validation_text) 
     if(country == null || country === "") {
         invalidInputRedBorder(country_element);
         country_validation_text.innerHTML = "Please input your country.";
-        invalidInputRedValidationText(language_validation_text);
+        invalidInputRedValidationText(country_validation_text);
     }
     else if(!country_pattern.test(country)) {
         invalidInputRedBorder(country_element);
