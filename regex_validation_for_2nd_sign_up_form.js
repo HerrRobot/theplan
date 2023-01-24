@@ -1,58 +1,152 @@
-const form = document.getElementById('signup_form_version_2');
+// This is the value of the user_id input field.
+var user_id;
+
+// This is the user_id input field
+var user_id_element;
+
+// This is the feedback text that appears undeneath the input field, for example "Please provide a user ID."
+// For now it is empty, but it will be altered after the validation process.
+var user_id_validation_text;
+
+
+// The same naming convention is used for the rest of the variables.
+var name;
+var name_element;
+var name_validation_text;
+
+var email;
+var email_element
+var email_validation_text;
+
+var language;
+var language_element;
+var language_validation_text;
+
+var country;
+var country_element;
+var country_validation_text;
+
+var password;
+let password_element;
+let password_validation_text;
+
+var repeat_password;
+let repeat_password_element;
+let repeat_password_validation_text;
+
+var zipcode;
+let zipcode_element;
+let zipcode_validation_text;
+
+var gender;
+let gender_element;
+let gender_validation_text;
+
+var terms;
+let terms_element;
+let terms_validation_text;
+
+
+const form = document.getElementById('sign_up_form_version_2');
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    // let allFieldsValid = AlexMethods();
-    // AndreiMethods();
-    // if(allFieldsValid) {
-    //     displayAlert();
-    // }
+    initializeVariables();
+    if(validate()) {
+        displayAlert();
+    }
     updateStatistics();
     displayStatistics();
 });
 
+function initializeVariables() {
+    // This is the value of the user_id input field.
+    user_id = document.getElementById("user_id").value;
+
+    // This is the user_id input field
+    user_id_element = document.getElementById("user_id");
+
+    // This is the feedback text that appears undeneath the input field, for example "Please provide a user ID."
+    // For now it is empty, but it will be altered after the validation process.
+    user_id_validation_text = document.getElementById("user_id_validation_text");
+
+
+    // The same naming convention is used for the rest of the variables.
+    name = document.getElementById("name").value;
+    name_element = document.getElementById("name");
+    name_validation_text = document.getElementById("name_validation_text");
+
+    email = document.getElementById("email").value;
+    email_element = document.getElementById("email");
+    email_validation_text = document.getElementById("email_validation_text");
+
+    language = document.getElementById("language").value;
+    language_element = document.getElementById("language");
+    language_validation_text = document.getElementById("language_validation_text");
+
+    country = document.getElementById("country").value;
+    country_element = document.getElementById("country");
+    country_validation_text = document.getElementById("country_validation_text");
+
+    password = document.getElementById("password").value;
+    password_element = document.getElementById("password");
+    password_validation_text = document.getElementById("password_validation_text");
+
+    repeat_password = document.getElementById("repeat_password").value;
+    repeat_password_element = document.getElementById("repeat_password");
+    repeat_password_validation_text = document.getElementById("repeat_password_validation_text");
+
+    zipcode = document.getElementById("zipcode").value;
+    zipcode_element = document.getElementById("zipcode");
+    zipcode_validation_text = document.getElementById("zipcode_validation_text");
+
+    gender = document.getElementById("gender").value;
+    gender_element = document.getElementById("gender");
+    gender_validation_text = document.getElementById("gender_validation_text");
+
+    terms = document.getElementById("terms_and_conditions").checked;
+    terms_element = document.getElementById("terms_and_conditions");
+    terms_validation_text = document.getElementById("terms_and_conditions_validation_text");
+}
+
+
 
 /**
- * Validates Andrei's assigned fields:
+ * Validates all the fields that have a certain format:
  * 
+ * These are the fields Alex validated:
  * password (and repeat password)
  * zipcode
  * gender
  * terms and conditions
  * 
- * @returns state of valididty of those fields
+ * These are the fields Andrei validated:
+ * user_id
+ * name
+ * email
+ * langauge
+ * country
+ * 
+ * @returns validity of all input
  */
-function AlexMethods() {
-    return validateOther();
-}
-
-function validateOther() {
-    var password = document.getElementById("password").value;
-    let password_element = document.getElementById("password");
-    let password_validation_text = document.getElementById("password_validation_text");
-
-    var repeat_password = document.getElementById("repeat_password").value;
-    let repeat_password_element = document.getElementById("repeat_password");
-    let repeat_password_validation_text = document.getElementById("repeat_password_validation_text");
-
-    var zipcode = document.getElementById("zipcode").value;
-    let zipcode_element = document.getElementById("zipcode");
-    let zipcode_validation_text = document.getElementById("zipcode_validation_text");
-
-    var gender = document.getElementById("gender").value;
-    let gender_element = document.getElementById("gender");
-    let gender_validation_text = document.getElementById("gender_validation_text");
-
-    var terms = document.getElementById("terms_and_conditions").checked;
-    let terms_element = document.getElementById("terms_and_conditions");
-    let terms_validation_text = document.getElementById("terms_and_conditions_validation_text");
-
+function validate() {
     let allFieldsValid = true;
-    allFieldsValid = allFieldsValid & testPasswordValidity(password, password_element, password_validation_text) &
-    testRepeatPasswordValidity(password, repeat_password, repeat_password_element, repeat_password_validation_text) &
-    testZipcodeValidity(zipcode, zipcode_element, zipcode_validation_text) &
-    testGenderValidity(gender, gender_element, gender_validation_text) &
-    testTermsValidity(terms, terms_element, terms_validation_text);
+
+    // Alex's validation checks
+    allFieldsValid = allFieldsValid &
+        testRepeatPasswordValidity(
+            testPasswordValidity(password, password_element, password_validation_text),
+            password, repeat_password, repeat_password_element, repeat_password_validation_text) &
+        testZipcodeValidity(zipcode, zipcode_element, zipcode_validation_text) &
+        testGenderValidity(gender, gender_element, gender_validation_text) &
+        testTermsValidity(terms, terms_element, terms_validation_text) &
+
+        // Andrei's validation checks
+        testUserIDValidity(user_id, user_id_element, user_id_validation_text) & 
+        testNameValidity(name, name_element, name_validation_text) & 
+        testEmailValidity(email, email_element, email_validation_text) & 
+        testLanguageValidity(language, language_element, language_validation_text) & 
+        testCountryValidity(country, country_element, country_validation_text);
 
     return allFieldsValid;
 }
@@ -99,8 +193,14 @@ function testPasswordValidity(password, password_element, password_validation_te
 
     if(password_valid) {
         validInputGreenBorder(password_element);
-        password_validation_text.innerHTML = "Looks good!";
         validInputGreenValidationText(password_validation_text);
+        
+        if(!(/^.{14,}/g.test(password))) {
+            password_validation_text.innerHTML = "The password is valid, but it is better if it is at least 14 characters long.";
+        }
+        else {
+            password_validation_text.innerHTML = "Looks good!";
+        }
     } else {
         invalidInputRedBorder(password_element);
         password_validation_text.innerHTML = password_invalid_text;
@@ -112,13 +212,23 @@ function testPasswordValidity(password, password_element, password_validation_te
 
 /**
  * Validates the input repeat passowrd
+ * @param {*} password_validity validity of password input in the field above
  * @param {*} password input in text format
  * @param {*} repeat_password input in text format
  * @param {*} repeat_password_element input field
  * @param {*} repeat_password_validation_text feedback text message about the user's input
  * @returns validity of input
  */
-function testRepeatPasswordValidity(password, repeat_password, repeat_password_element, repeat_password_validation_text) {
+function testRepeatPasswordValidity(password_validity, password, 
+        repeat_password, repeat_password_element, repeat_password_validation_text) {
+    
+    if(password_validity == false) {
+        invalidInputRedBorder(repeat_password_element);
+        repeat_password_validation_text.innerHTML = "Please provide a valid password in the 'Password' field above.";
+        invalidInputRedValidationText(repeat_password_validation_text);
+        return false;
+    }
+
     if(repeat_password == null || repeat_password === "") {
         invalidInputRedBorder(repeat_password_element);
         repeat_password_validation_text.innerHTML = "This field cannot be empty.";
@@ -131,7 +241,7 @@ function testRepeatPasswordValidity(password, repeat_password, repeat_password_e
         return true;
     } else {
         invalidInputRedBorder(repeat_password_element);
-        repeat_password_validation_text.innerHTML = "Password fields do not match.";
+        repeat_password_validation_text.innerHTML = "Passwords do not match.";
         invalidInputRedValidationText(repeat_password_validation_text);
         return false
     }
@@ -145,24 +255,24 @@ function testRepeatPasswordValidity(password, repeat_password, repeat_password_e
  * @returns validity of input
  */
 function testZipcodeValidity(zipcode, zipcode_element, zipcode_validation_text) {
-const zipcode_pattern = /^[0-9]{4,4}[a-z]{2,2}$/gi;
+    const zipcode_pattern = /^[0-9]{4,4}[a-z]{2,2}$/gi;
 
-if(zipcode == null || zipcode === "") {
-    invalidInputRedBorder(zipcode_element);
-    zipcode_validation_text.innerHTML = "This field cannot be empty";
-    invalidInputRedValidationText(zipcode_validation_text);
-    return false;
-} else if(!zipcode_pattern.test(zipcode)) {
-    invalidInputRedBorder(zipcode_element);
-    zipcode_validation_text.innerHTML = "Please enter a zipcode in the valid format, something like: 1234AB";
-    invalidInputRedValidationText(zipcode_validation_text);
-    return false;
-} else {
-    validInputGreenBorder(zipcode_element);
-    zipcode_validation_text.innerHTML = "Looks good!";
-    validInputGreenValidationText(zipcode_validation_text);
-    return true;
-}
+    if(zipcode == null || zipcode === "") {
+        invalidInputRedBorder(zipcode_element);
+        zipcode_validation_text.innerHTML = "This field cannot be empty";
+        invalidInputRedValidationText(zipcode_validation_text);
+        return false;
+    } else if(!zipcode_pattern.test(zipcode)) {
+        invalidInputRedBorder(zipcode_element);
+        zipcode_validation_text.innerHTML = "Please enter a zipcode in the Dutch valid format.";
+        invalidInputRedValidationText(zipcode_validation_text);
+        return false;
+    } else {
+        validInputGreenBorder(zipcode_element);
+        zipcode_validation_text.innerHTML = "Looks good!";
+        validInputGreenValidationText(zipcode_validation_text);
+        return true;
+    }
 }
 
 /**
@@ -173,17 +283,17 @@ if(zipcode == null || zipcode === "") {
  * @returns validity of input
  */
 function testGenderValidity(gender, gender_element, gender_validation_text) {
-if(gender == null || gender === "") {
-    invalidInputRedBorder(gender_element);
-    gender_validation_text.innerHTML = "Please select your gender.";
-    invalidInputRedValidationText(gender_validation_text);
-    return false;
-} else {
-    validInputGreenBorder(gender_element);
-    gender_validation_text.innerHTML = "Looks good!";
-    validInputGreenValidationText(gender_validation_text);
-    return true;
-}
+    if(gender == null || gender === "") {
+        invalidInputRedBorder(gender_element);
+        gender_validation_text.innerHTML = "Please select your gender.";
+        invalidInputRedValidationText(gender_validation_text);
+        return false;
+    } else {
+        validInputGreenBorder(gender_element);
+        gender_validation_text.innerHTML = "Looks good!";
+        validInputGreenValidationText(gender_validation_text);
+        return true;
+    }
 }
 
 /**
@@ -196,75 +306,17 @@ if(gender == null || gender === "") {
  * @returns validity of input
  */
 function testTermsValidity(terms, terms_element, terms_validation_text) {
-if(!terms) {
-    invalidInputRedBorder(terms_element);
-    terms_validation_text.innerHTML = "Please agree to the Terms and Conditions.";
-    invalidInputRedValidationText(terms_validation_text);
-    return false;
-} else {
-    validInputGreenBorder(terms_element);
-    terms_validation_text.innerHTML = "Looks good!";
-    validInputGreenValidationText(terms_validation_text);
-    return true;
-}
-}
-
-/**
- * Validates Andrei's assigned fields:
- * 
- * user_id
- * name
- * email
- * language
- * country
- */
-function AndreiMethods() {
-validate();
-}
-
-/**
- * Validates:
- * 
- * user_id
- * name
- * email
- * language
- * country
- */
-function validate() {
-    // This is the value of the user_id input field.
-    var user_id = document.getElementById("user_id").value;
-
-    // This is the actual value of the user_id input field
-    var user_id_element = document.getElementById("user_id");
-
-    // This is the feedback text that appears undeneath the input field, for example "Please provide a user ID."
-    // For now it is empty, but it will be altered after the validation process.
-    var user_id_validation_text = document.getElementById("user_id_validation_text");
-
-
-    // Same naming convention is used for the rest of the variables.
-    var name = document.getElementById("name").value;
-    var name_element = document.getElementById("name");
-    var name_validation_text = document.getElementById("name_validation_text");
-
-    var email = document.getElementById("email").value;
-    var email_element = document.getElementById("email");
-    var email_validation_text = document.getElementById("email_validation_text");
-
-    var language = document.getElementById("language").value;
-    var language_element = document.getElementById("language");
-    var language_validation_text = document.getElementById("language_validation_text");
-
-    var country = document.getElementById("country").value;
-    var country_element = document.getElementById("country");
-    var country_validation_text = document.getElementById("country_validation_text");
-
-    testUserIDValidity(user_id, user_id_element, user_id_validation_text);
-    testNameValidity(name, name_element, name_validation_text);
-    testEmailValidity(email, email_element, email_validation_text);
-    testLanguageValidity(language, language_element, language_validation_text);
-    testCountryValidity(country, country_element, country_validation_text);
+    if(!terms) {
+        invalidInputRedBorder(terms_element);
+        terms_validation_text.innerHTML = "Please agree to the Terms and Conditions.";
+        invalidInputRedValidationText(terms_validation_text);
+        return false;
+    } else {
+        terms_validation_text.innerHTML = "";
+        validInputGreenBorder(user_id_element);
+        validInputGreenValidationText(user_id_validation_text);
+        return true;
+    }
 }
 
 /**
@@ -272,8 +324,10 @@ function validate() {
  * @param {*} user_id input in text format
  * @param {*} user_id_element input field
  * @param {*} user_id_validation_text feedback text message about the user's input
+ * @returns validity of input
  */
 function testUserIDValidity(user_id, user_id_element, user_id_validation_text) {
+    var valid = false;
     const user_id_pattern = /^[A-Z].*(\d|\W)$/g;
     const user_id_length_pattern = /^.{5,12}$/g;
     const user_id_nowhitespace_pattern = /^[^\s]*$/g;
@@ -305,10 +359,12 @@ function testUserIDValidity(user_id, user_id_element, user_id_validation_text) {
     }
     else {
         validInputGreenBorder(user_id_element);
+        valid = true;
         user_id_validation_text.innerHTML = "Looks good!";
         validInputGreenValidationText(user_id_validation_text);
     }
 
+    return valid;
 }
 
 /**
@@ -316,8 +372,10 @@ function testUserIDValidity(user_id, user_id_element, user_id_validation_text) {
  * @param {*} name input in text format
  * @param {*} name_element input field
  * @param {*} name_validation_text feedback text message about the user's input
+ * @returns validity of input
  */
 function testNameValidity(name, name_element, name_validation_text) {
+    var valid = false;
     const name_pattern = /^[A-Z][a-z]+((\s)+[A-Z][a-z]+)*$/g;
 
     if(name == null || name === "") {
@@ -329,23 +387,29 @@ function testNameValidity(name, name_element, name_validation_text) {
     else if(!name_pattern.test(name)) {
         invalidInputRedBorder(name_element);
         name_validation_text.innerHTML = 
-            "Each name must be separated by whitespace, must start with a capital letter, and must only contain letters.";
+            "Each name must be separated by whitespace, start with a capital letter, and only contain letters.";
         invalidInputRedValidationText(name_validation_text);
     }
     else {
+        valid = true;
         validInputGreenBorder(name_element);
         name_validation_text.innerHTML = "Looks good!";
         validInputGreenValidationText(name_validation_text);
     }
-    }
 
-    /**
-     * Validates the input email
-     * @param {*} email input in text format
-     * @param {*} email_element input field
-     * @param {*} email_validation_text feedback text message about the user's input
-     */
-    function testEmailValidity(email, email_element, email_validation_text) {
+    return valid;
+}
+
+/**
+ * Validates the input email
+ * @param {*} email input in text format
+ * @param {*} email_element input field
+ * @param {*} email_validation_text feedback text message about the user's input
+ * @returns valididty of input
+ */
+function testEmailValidity(email, email_element, email_validation_text) {
+    var valid = false;
+
     // template for valid email addresses at
     // https://help.xmatters.com/ondemand/trial/valid_email_format.htm#:~:text=A%20valid%20email%20address%20consists,com%22%20is%20the%20email%20domain.
 
@@ -363,10 +427,13 @@ function testNameValidity(name, name_element, name_validation_text) {
         invalidInputRedValidationText(email_validation_text);
     }
     else {
+        valid = true;
         validInputGreenBorder(email_element);
         email_validation_text.innerHTML = "Looks good!";
         validInputGreenValidationText(email_validation_text);
     }
+
+    return valid;
 }
 
 /**
@@ -374,18 +441,23 @@ function testNameValidity(name, name_element, name_validation_text) {
  * @param {*} language input in text format
  * @param {*} language_element input field
  * @param {*} language_validation_text feedback text message about the user's input
+ * @returns validity of input
  */
 function testLanguageValidity(language, language_element, language_validation_text) {
+    var valid = false;
     if(language == null || language === "") {
         invalidInputRedBorder(language_element);
         language_validation_text.innerHTML = "Please select a language.";
         invalidInputRedValidationText(language_validation_text);
     }
     else {
+        valid = true;
         validInputGreenBorder(language_element);
         language_validation_text.innerHTML = "Looks good!";
         validInputGreenValidationText(language_validation_text);
     }
+
+    return valid;
 }
 
 /**
@@ -393,8 +465,10 @@ function testLanguageValidity(language, language_element, language_validation_te
  * @param {*} country input in text format
  * @param {*} country_element input field
  * @param {*} country_validation_text feedback text message about the user's input
+ * @returns validity of input
  */
 function testCountryValidity(country, country_element, country_validation_text) {
+    var valid = false;
     // The country input is case insensitive because 
     // they can be searched in a database regardless of the case
     const country_pattern = 
@@ -411,10 +485,13 @@ function testCountryValidity(country, country_element, country_validation_text) 
         invalidInputRedValidationText(country_validation_text);
     }
     else {
+        valid = true;
         validInputGreenBorder(country_element);
         country_validation_text.innerHTML = "Looks good!";
         validInputGreenValidationText(country_validation_text);
     }
+
+    return valid;
 }
 
 /**
@@ -455,7 +532,7 @@ function validInputGreenValidationText(text) {
  * Thsi function is called in case all input was valid.
  */
 function displayAlert() {
-    alert("You have successfully submitted this form with the values\n" + 
+    alert("You have successfully submitted this form with the values:\n\n" + 
         "UserID: " + document.getElementById("user_id").value + 
         "\nPassword: " + document.getElementById("password").value + 
         "\nName: " + document.getElementById("name").value +

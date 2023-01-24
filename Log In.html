@@ -6,17 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="CSS/form.css">
+    <script defer src="validation_for_log_in_form.js"></script>
 </head>
 <body>
 
     <div id="form_background">
         <!--the action attribute tells the form where to submit the info-->
-      <!-- <form action="index.html" method="post">
+      <form id="log_in_form">
         <div id="logo_container">
           ThePlan
         </div>
-        <input type="email" id="mail" name="user_email" placeholder="Email"/>
-        <input type="password" id="name" name="password" placeholder="Password"/>
+
+        <div>
+          <label for="log_in_user_id">User ID</label>
+          <input class="log_in_input_field" id="log_in_user_id" name="log_in_user_id" type="text" 
+              placeholder="Shifu543"/>
+          <p id="log_in_user_id_validation_text"></p>
+        </div>
+        
+        <div>
+          <label>Password</label>
+          <input class="log_in_input_field" id="log_in_password" type="password" name="log_in_password" 
+            placeholder="●●●●●●●●●●●●●●●●●●●"/>
+            <p id="log_in_password_validation_text"></p>
+        </div>
+
         <button class="submit_button" type="submit">Log In</button>
         
         <p>
@@ -25,9 +39,11 @@
             Create Account
           </a>
         </p>
-      </form> -->
+      </form>
+
+
       <!-- form did not work on github pages so for now we left it as a div. -->
-      <div id="submit_form">
+      <!-- <div id="submit_form">
         <div id="logo_container">
           ThePlan
         </div>
@@ -44,8 +60,7 @@
           </a>
         </p>
       </div>
-      <!--the type of "submit" submits the form info-->
-    </div>
+    </div> -->
     
       
 </body>

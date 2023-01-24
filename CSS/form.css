@@ -9,9 +9,7 @@ Dark colors to light colors.
 */
 
 #behavioral_stats_container {
-    position: relative;
-    left: 20rem;
-    color: red;
+    color: yellow;
     display: none;
 }
 

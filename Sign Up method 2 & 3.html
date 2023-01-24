@@ -11,16 +11,17 @@
 </head>
 <body id="signup_form_body">
 
-  <div id = "behavioral_stats_container">
-    <p id="mouse_clicks_container">Number of moinputuse clicks: </p>
-    <p id="time_spent_container">Total time spent: </p>
-    <p id="key_presses_container">Total key presses: </p>
-    <!-- Characters typed in the form, excluding deleted ones. -->
-    <p id="characters_typed_container">Total number of characters typed: </p>
-  </div>
-
     <div id="form_background">
-      <form id="signup_form_version_2">
+      <form id="sign_up_form_version_2">
+        <div id = "behavioral_stats_container">
+          <p id="mouse_clicks_container">Number of moinputuse clicks: </p>
+          <p id="time_spent_container">Total time spent: </p>
+          <p id="key_presses_container">Total key presses: </p>
+      
+          <!-- Characters left typed in the form at the time of submission, excluding deleted ones. -->
+          <p id="characters_typed_container">Total number of characters typed: </p>
+        </div>
+
         <div id="logo_container">
           ThePlan
         </div>
@@ -98,7 +99,7 @@
 
         <div>
           <label for="zipcode">ZIP Code*</label>
-          <input class="sign_up_input_field" id="zipcode" type="text" name="zipcode" placeholder="1234AB">
+          <input class="sign_up_input_field" id="zipcode" type="text" name="zipcode" placeholder="2650HB">
           <p id="zipcode_validation_text"></p>
         </div>
 
