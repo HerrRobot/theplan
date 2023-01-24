@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="form.css">
+    <script defer src="regex_validation_for_2nd_sign_up_form.js"></script>
+    <script defer src="behavioral_tracking.js"></script>
+</head>
+<body id="signup_form_body">
+
+    <div id="form_background">
+      <form id="sign_up_form_version_2">
+        <div id = "behavioral_stats_container">
+          <p id="mouse_clicks_container">Number of moinputuse clicks: </p>
+          <p id="time_spent_container">Total time spent: </p>
+          <p id="key_presses_container">Total key presses: </p>
+      
+          <!-- Characters left typed in the form at the time of submission, excluding deleted ones. -->
+          <p id="characters_typed_container">Total number of characters typed: </p>
+        </div>
+
+        <div id="logo_container">
+          ThePlan
+        </div>
+        
+        <div id="user_id_container">
+          <label for="user_id">User ID*</label>
+          <input class="sign_up_input_field" id="user_id" name="user_id" type="text" 
+              placeholder="Shifu543"/>
+          <p id="user_id_validation_text"></p>
+        </div>
+
+        <div>
+          <label>Password*</label>
+          <input class="sign_up_input_field" id="password" type="password" name="password" 
+            placeholder="●●●●●●●●●●●●●●●●●●●"/>
+            <p id="password_validation_text"></p>
+        </div>
+        
+        <div>
+          <label>Repeat Password*</label>
+          <input class="sign_up_input_field" id="repeat_password" type="password" name="repeat_password" 
+            placeholder="●●●●●●●●●●●●●●●●●●●"/>
+            <p id="repeat_password_validation_text"></p>
+        </div> 
+
+        <div id="name_container">
+          <label for="name">Name*</label>
+          <input class="sign_up_input_field" type="text" id="name" name="name" placeholder="Marigold Atkinson"/>
+          <p id="name_validation_text"></p>
+        </div>      
+
+        <div id="email_container">
+          <label for="email">Email*</label>
+          <input class="sign_up_input_field" id="email" name="email" type="text" placeholder="margioldatkinson42@yahoo.co.uk"/>
+          <p id="email_validation_text"></p>
+        </div>
+
+        <div>
+          <label for="gender">Gender*</label>
+          <select class="sign_up_input_field" id="gender" name="gender">
+              <option value="" disabled selected>Select gender</option>
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+              <option value="other">Other</option>
+          </select>
+          <p id="gender_validation_text"></p>
+        </div>
+
+        <div id="language_container">
+          <label for="language">Language*</label>
+          <select class="sign_up_input_field" id="language" name="language">
+              <option value="" disabled selected>Select language</option>
+              <option value="english">English</option>
+              <option value="dutch">Dutch</option>
+          </select>
+          <p id="language_validation_text"></p>
+        </div>
+
+        <div>
+          <label id="label_about" for="textarea">About/bio:</label>
+        <textarea class="sign_up_input_field" name="about" id="about" cols="30" rows="10"></textarea>
+        </div>
+      
+        
+        <div id="country_container">
+          <label for="country">Country*</label>
+          <input class="sign_up_input_field" id="country" name="country" type="text" placeholder="Netherlands"/>
+          <p id="country_validation_text"></p>
+        </div>
+
+        <div>
+          <label for="city">City</label>
+          <input class="sign_up_input_field" id="city" name="city" type="text" placeholder="Breda"/>
+        </div>
+
+        <div>
+          <label for="zipcode">ZIP Code*</label>
+          <input class="sign_up_input_field" id="zipcode" type="text" name="zipcode" placeholder="2650HB">
+          <p id="zipcode_validation_text"></p>
+        </div>
+
+        <div>
+          <label for="street">Street</label>
+          <input class="sign_up_input_field" id="street" name="street" type="text" placeholder="Hugo de Dorpstraat"/>
+        </div>
+
+        <div>
+          <label for="street_number">Street Number</label>
+          <input class="sign_up_input_field" id="street_number" name="street_number" type="text" placeholder="57B"/>
+        </div>
+      
+
+        <div>
+          <input class="sign_up_input_field" id="terms_and_conditions" name="terms_and_conditions" type="checkbox">
+          <label for="terms_and_conditions">Agree to our terms and conditions</label>
+          <p id="terms_and_conditions_validation_text"></p>
+        </div>
+
+        <div>
+          <p>* Required</p>
+        </div>
+
+        <div>
+          <button class="submit_button" type="submit">Sign Up</button>
+        </div>
+
+        <div>
+          <p>
+            Already have an account?<br>
+            <a href="Log In.html" id="log_in_create_account">
+              Log In
+            </a>
+          </p>
+        </div>
+
+
+      </form>
+
+
+      <!--the type of "submit" submits the form info-->
+      <!-- <div id="submit_form">
+        <div id="logo_container">
+          ThePlan
+        </div>
+        <input type="text" id="text" name="user_id" placeholder="User ID"/>
+        <input type="text" id="text" name="name" placeholder="Full Name"/>
+        <input type="text" id="text" name="address" placeholder="Address"/>
+        <input type="text" id="text" name="country" placeholder="Country"/>
+        <input type="text" id="text" name="zipcode" placeholder="ZIP Code"/>
+        <input type="email" id="mail" name="user_email" placeholder="Email"/>
+        <select name="sex" id="sex">
+          <option value="female">Female</option>
+          <option value="male">Male</option>
+          <option value="other">Other</option>
+        </select>
+        <select name="language" id="language">
+          <option value="english">English</option>
+          <option value="dutch">Dutch</option>
+        </select>
+        <label for="textarea" id="label_about">About/bio:</label>
+        <textarea name="about" id="text" cols="30" rows="10"></textarea>
+        <input type="password" id="password" name="password1" placeholder="Password"/>
+        <input type="password" id="password" name="password2" placeholder=" Repeat Password"/>
+        <a href="index.html">
+          <button class="submit_button" type="submit">Sign Up</button>
+        </a>
+        
+        <p>
+          Already have an account?<br>
+          <a href="Log In.html" id="log_in_create_account">
+            Log In
+          </a>
+        </p>
+      </div> -->
+    </div>
+    
+      
+</body>
+</html>
+
