@@ -1,3 +1,5 @@
+var start_time = Date.now();
+
 var mouse_clicks;
 var time_spent;
 var key_presses;
@@ -17,6 +19,7 @@ eventListeners();
  * Initializes variables necessary for behavioral tracking.
  */
 function init() {
+    
     mouse_clicks = 0;
     time_spent = 0;
     key_presses = 0;
@@ -50,10 +53,40 @@ function eventListeners() {
 }
 
 /**
+ * The time calculation function is pretty simple, it basically calculates the time between the
+ * time when the script is executed (on line 1 the current time is assigned to the variable start_time) 
+ * and the user submitting the form (current time is taken agan on the first line in this function).
+ * The rest is just some calculations to convert the miliseconds into a string of minutes and seconds.
+ */
+function calculateTime() {
+    let total_time_milis = Date.now() - start_time;
+    let total_time_minutes = Math.floor(total_time_milis/60000);
+    let total_time_seconds = (total_time_milis%60000)/1000;
+    time_spent = total_time_minutes + " mins  " + total_time_seconds + " secs";
+}
+
+/**
+ * To get the number of typed characters we sum the length of the string inputs from each field that te user
+ * has filled out.
+ */
+function characterCount() {
+    let fields = document.getElementsByClassName("sign_up_input_field");
+    characters_typed = 0;
+    for(let i = 0; i < fields.length; i++) {
+        if(fields[i].id == "gender" || fields[i].id == "language" || fields[i].id == "terms_and_conditions") {
+            continue;
+        }
+        characters_typed += fields[i].value.length;
+    }
+}
+
+/**
  * Adds the statistics to the behvaioral stats textbox called behavioral_stats_container.
  * This function is called once the form is submitted. (in regex_validation_for_2nd_sign_up_form.js)
  */
 function updateStatistics() {
+    calculateTime();
+    characterCount();
     mouse_clicks_container.innerHTML = 
         "Number of mouse clicks: " + mouse_clicks;
     time_spent_container.innerHTML = 

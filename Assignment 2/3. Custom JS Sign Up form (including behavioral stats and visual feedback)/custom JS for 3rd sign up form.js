@@ -159,32 +159,56 @@ function validate() {
  * @returns validity of input
  */
 function testPasswordValidity(password, password_element, password_validation_text) {
-    const password_pattern_1 = /[a-z]/g;
-    const password_pattern_2 = /[A-Z]/g;
-    const password_pattern_3 = /[0-9]/g;
-    const password_pattern_4 = /[!-/:-@\[-`{-~]/g;
-    const password_length_patern = /^.{12,}/;
-    //this is where I got the idea for the symbol matching
-    //https://stackoverflow.com/questions/8359566/regex-to-match-symbols
+
     let password_valid = true;
     let password_invalid_text = "Please enter a valid password which ";
-    if(!password_pattern_1.test(password)) {
+    let characterArray = password.split('');
+
+    /*
+    0. a-z
+    1. A-Z
+    2. 0-9
+    3. symbols
+    */
+    let conditions = [false, false, false, false];
+    for(let i = 0; i < password.length; i ++) {
+        let char = password.charCodeAt(i);
+        //a-z check
+        if(97 <= char && char <= 122) {
+            conditions[0] = true;
+        //A-Z check
+        } else if(65 <= char && char <= 90) {
+            conditions[1] = true;
+        //0-9 check
+        } else if(48 <= char && char <= 57) {
+            conditions[2] = true;
+        //symbol check
+        } else if(
+            (33 <= char && char <= 47) || 
+            (58 <= char && char <= 64) || 
+            (91 <= char && char <= 96) || 
+            (123 <= char && char <= 126)) {
+                conditions[3] = true;
+        }
+
+    }
+    if(!conditions[0]) {
         password_valid = false;
         password_invalid_text += "has at least one lowercase letter, ";
     }
-    if(!password_pattern_2.test(password)) {
+    if(!conditions[1]) {
         password_valid = false;
         password_invalid_text += "has at least one uppercase letter, ";
     }
-    if(!password_pattern_3.test(password)) {
+    if(!conditions[2]) {
         password_valid = false;
         password_invalid_text += "has at least one digit, ";
     }
-    if(!password_pattern_4.test(password)) {
+    if(!conditions[3]) {
         password_valid = false;
         password_invalid_text += "has at least one symbol, ";
     }
-    if(!password_length_patern.test(password) || password == null || password === "") {
+    if((password.length < 12) || password == null || password === "") {
         password_valid = false;
         password_invalid_text += "is at least 12 characters long.";
     } else {
@@ -195,7 +219,7 @@ function testPasswordValidity(password, password_element, password_validation_te
         validInputGreenBorder(password_element);
         validInputGreenValidationText(password_validation_text);
         
-        if(!(/^.{14,}/g.test(password))) {
+        if(password.length < 14) {
             password_validation_text.innerHTML = "The password is valid, but it is better if it is at least 14 characters long.";
         }
         else {
@@ -255,14 +279,22 @@ function testRepeatPasswordValidity(password_validity, password,
  * @returns validity of input
  */
 function testZipcodeValidity(zipcode, zipcode_element, zipcode_validation_text) {
-    const zipcode_pattern = /^[0-9]{4,4}[a-z]{2,2}$/gi;
+    let zipcode_valid = (zipcode.length > 6 || zipcode.length <6) ? false : true;
+    for(let i = 0; i < 6; i++) {
+        let char = zipcode.charCodeAt(i);
+        if(i < 4 && !(48 <= char && char <= 57)) {
+            zipcode_valid = false;
+        } else if(i >= 4 && !((97 <= char && char <= 122) || (65 <= char && char <= 90))) {
+            zipcode_valid = false;
+        }
+    }
 
     if(zipcode == null || zipcode === "") {
         invalidInputRedBorder(zipcode_element);
         zipcode_validation_text.innerHTML = "This field cannot be empty";
         invalidInputRedValidationText(zipcode_validation_text);
         return false;
-    } else if(!zipcode_pattern.test(zipcode)) {
+    } else if(!zipcode_valid) {
         invalidInputRedBorder(zipcode_element);
         zipcode_validation_text.innerHTML = "Please enter a zipcode in the Dutch valid format.";
         invalidInputRedValidationText(zipcode_validation_text);

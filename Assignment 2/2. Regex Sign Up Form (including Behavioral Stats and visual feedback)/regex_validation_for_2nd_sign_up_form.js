@@ -529,7 +529,7 @@ function validInputGreenValidationText(text) {
 
 /**
  * Displays an alert with the data input by the user.
- * Thsi function is called in case all input was valid.
+ * This function is called in case all input was valid.
  */
 function displayAlert() {
     alert("You have successfully submitted this form with the values:\n\n" + 
