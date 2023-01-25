@@ -369,6 +369,10 @@ function testUserIDValidity(user_id, user_id_element, user_id_validation_text) {
 
     var length = user_id.length;
 
+    
+    var temp1 = user_id.charCodeAt(0);
+    var temp2 = user_id.charCodeAt(length - 1);
+
 
     if(user_id == null || user_id === "") {
         invalidInputRedBorder(user_id_element);
@@ -385,10 +389,10 @@ function testUserIDValidity(user_id, user_id_element, user_id_validation_text) {
         (65 <= user_id.charCodeAt(0) &&  (user_id.charCodeAt(0) <= 90)) &&
 
         // Condition 2: The last letter needs to be a non-letter - not from A-Z 
-        (!(65 <=user_id.charCodeAt(length - 1) &&  user_id.charCodeAt(length - 1) <= 90) ||
+        (!(65 <= user_id.charCodeAt(length - 1) &&  user_id.charCodeAt(length - 1) <= 90) &&
 
             // or a-z
-            (97 <= user_id.charCodeAt(length - 1) &&  user_id.charCodeAt(length - 1) <= 122)))) {
+            !(97 <= user_id.charCodeAt(length - 1) &&  user_id.charCodeAt(length - 1) <= 122)))) {
 
         invalidInputRedBorder(user_id_element);
         user_id_validation_text.innerHTML = 
@@ -536,7 +540,8 @@ function testEmailValidity(email, email_element, email_validation_text) {
         }
 
         // Only other allowed characters are letters/digits.
-        if(!((97 <= currentChar &&  currentChar <= 122) ||
+        else if(!(currentChar == 46 || currentChar == 45 || currentChar == 95) 
+            && !((97 <= currentChar &&  currentChar <= 122) ||
             (48 <= currentChar &&  currentChar <= 57))) {
             invalidEmail(email_element, email_validation_text);
             return false;
@@ -570,7 +575,8 @@ function testEmailValidity(email, email_element, email_validation_text) {
         }
 
         // Only other allowed characters are letters/digits.
-        if(!((97 <= currentChar &&  currentChar <= 122) ||
+        else if(!(currentChar == 46 || currentChar == 45 || currentChar == 95) 
+            && !((97 <= currentChar &&  currentChar <= 122) ||
             (48 <= currentChar &&  currentChar <= 57))) {
             invalidEmail(email_element, email_validation_text);
             return false;
