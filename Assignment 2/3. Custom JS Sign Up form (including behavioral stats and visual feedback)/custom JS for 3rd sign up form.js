@@ -162,13 +162,14 @@ function testPasswordValidity(password, password_element, password_validation_te
 
     let password_valid = true;
     let password_invalid_text = "Please enter a valid password which ";
-    let characterArray = password.split('');
 
     /*
     0. a-z
     1. A-Z
     2. 0-9
     3. symbols
+
+    This for loop checks which of the four requirements the password matches.
     */
     let conditions = [false, false, false, false];
     for(let i = 0; i < password.length; i ++) {
@@ -192,6 +193,8 @@ function testPasswordValidity(password, password_element, password_validation_te
         }
 
     }
+
+    //The following if statements append text to the password_invalid_text variable based on conditions not met
     if(!conditions[0]) {
         password_valid = false;
         password_invalid_text += "has at least one lowercase letter, ";
@@ -215,6 +218,7 @@ function testPasswordValidity(password, password_element, password_validation_te
         password_invalid_text = password_invalid_text.substring(0, password_invalid_text.length-2) + ".";
     }
 
+    //If the password is valid, the password_invalid text is not used, and a password valid message is displayed
     if(password_valid) {
         validInputGreenBorder(password_element);
         validInputGreenValidationText(password_validation_text);
